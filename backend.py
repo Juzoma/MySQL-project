@@ -34,7 +34,7 @@ def homepage():
 
 
 #show all destinations from the destination table
-@app.route('/api/destination/all', methods=['GET'])
+@app.route('/destination/all', methods=['GET'])
 def show_all():
     query = "SELECT * FROM destination"
     destinations = execute_read_query(conn, query)
@@ -47,7 +47,7 @@ def show_all():
 
 # will be showing a destination based on an input ID, if no ID is input then message will occur
 # endpoint to get a single destination by id http://127.0.0.1:5000/api/destination?1d=1
-@app.route('/api/destination', methods=["GET"])
+@app.route('/destination', methods=["GET"])
 def show_destination():
     if 'id' in request.args:
         id = int(request.args['id'])
@@ -63,7 +63,7 @@ def show_destination():
     return jsonify(results)
 
 # add a new destination fields to the destination table
-@app.route('/adddestination', methods=["POST"])
+@app.route('/destination', methods=["POST"])
 def add_destination():
     request_data = request.get_json()
     newcountry = request_data['country']
@@ -83,7 +83,7 @@ def add_destination():
 
 
 #delete a destination from the table
-@app.route('/deletedestination', methods=["DELETE"])
+@app.route('/destination', methods=["DELETE"])
 def delete_des():
     if 'id' in request.args:
         id = int(request.args['id'])
@@ -96,7 +96,7 @@ def delete_des():
 
 
 #this function will take the input from api the and update the exisiting fields with the db destination table
-@app.route('/updatedestination', methods=['PUT'])
+@app.route('/destination', methods=['PUT'])
 def update_destination():
     if 'id' in request.args:
         id = int(request.args['id'])
@@ -114,7 +114,7 @@ def update_destination():
 
 
 # shows all the trips
-@app.route('/showtrip/all', methods=['GET'])
+@app.route('/trip/all', methods=['GET'])
 def show_all_trips():
     query = "SELECT transportation, startdate, enddate FROM trip "
     trips = execute_read_query(conn, query)
@@ -128,7 +128,7 @@ def show_all_trips():
 
 
 #shows the trip based on the request ID
-@app.route('/api/trip', methods=['GET'])
+@app.route('/trip', methods=['GET'])
 def show_trips():
     if 'id' in request.args:
         id = int(request.args['id'])
@@ -146,7 +146,7 @@ def show_trips():
     return jsonify(results)
 
 # adds all the new destination data taken from the API into the table
-@app.route('/addtrip', methods=["POST"])
+@app.route('/trip', methods=["POST"])
 def add_trip():
     request_data = request.get_json()
     did = int(request_data['destination_id'])
@@ -169,7 +169,7 @@ def add_trip():
 
 
 # delete a trip from the trip table by id
-@app.route('/deletetrip', methods=["DELETE"])
+@app.route('/trip', methods=["DELETE"])
 def delete_trip():
     if 'id' in request.args:
         id = int(request.args['id'])
@@ -181,7 +181,7 @@ def delete_trip():
     return 'Trip deleted!'
 
 # updates the trip table in the DB with the new fields taken from the API
-@app.route('/updatetrip', methods=['PUT'])
+@app.route('/trip', methods=['PUT'])
 def update_trip():
     if 'id' in request.args:
         id = int(request.args['id'])
