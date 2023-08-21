@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <%- include('../partials/head'); %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body class="container">
+    
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
+    
+        <main>
+            <div class="jumbotron">
+                <h1>Create a New Destination</h1>
+        
+                <form action="/processdynamicform" method="POST">
+                    <h5>New Destination to travel </h5>
+                    <div class="form-group">
+                        <input type="number" name="id" id="id" class="form-control" placeholder="choose id (Enter the number after the one shown at the very bottom)">
+                        <br>
+                        <input type="text" name="country" id="country" class="form-control" placeholder="Enter Country">
+                        <br>
+                        <input type="text" name="city" id="city" class="form-control" placeholder="Enter City">
+                        <br>
+                        <input type="text" name="sightseeing" id="sight" class="form-control" placeholder="Enter sightseeing">
+                        <br>
+                        <input class="btn btn-lg btn-primary btn-block" type="submit">
+                    </div>
+                </form>
+                
+                <% if(locals.added) { %>
+                    <label><%= locals.added %></label>
+
+                    
+
+                <%} %>
+            </div>
+            <div class="col-sm-4">
+                <div class="well">
+                <ul>
+                    <% if (locals.des) { %>
+                        <% locals.des.forEach(function(destination) { %>
+                        <li>
+                            
+                            <%=destination.id %>, <%= destination.country %>, <%=destination.city %>, <%=destination.sightseeing %>
+            
+                        </li>
+                        <% }); %>
+                    <% } %>
+                </ul>
+                </div>
+            </div>
+        </main>
+
+    </body>
+
+
+</html>
