@@ -1,0 +1,63 @@
+<html>
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="container">
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>  
+        <div class="jumbotron">
+            <h1>Edit Your Trip</h1>
+            <p> Use the ID of an existing destination to change the following fields below.</p>
+
+            <form action="/process_tripform" method="POST">
+                <div class="form-group">
+                    <!-- <label>List ID:</label>
+                    <input type="text" placeholder="ex: 4" name="id" class="form-control"> -->
+                    <!-- <br> -->
+                    <label>Destination ID:</label>
+                    <input type="text" placeholder="ex: 11" name="destination_id" class="form-control">
+                    <br>
+                    <label>Transportation:</label>
+                    <input type="text" placeholder="Transportation method" name="transportation" class="form-control">
+                    <br>
+                    <label>New Start Date:</label>
+                    <input type="text" placeholder="YYYY-MM-DD" name="startdate" class="form-control">
+                    <br>
+                    <label> New End Date:</label>
+                    <input type="text" placeholder="YYYY-MM-DD" name="enddate" class="form-control">
+                    <br>
+                    <label>Trip Name</label>
+                    <input type="text" placeholder="ex: Miami Trip" name="tripname" class="form-control">
+                    <br>
+                    <input class="btn btn-lg btn-primary btn-block" type="submit">
+                </div>
+            </form>
+
+            <% if(locals.updated) { %>
+                <label><%= locals.updated %></label>
+            <%} %>    
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+            <ul>
+                <% if (locals.trip) { %>
+                    <% locals.trip.forEach(function(place) { %>
+                    <li>
+                        
+                        <%=place.transportation %>, <%= place.startdate %>, <%=place.enddate %>, <%=place.tripname %>
+        
+                    </li>
+                    <% }); %>
+                <% } %>
+            </ul>
+            </div>
+        </div>
+    </main>
+
+
+</body>
+</html>

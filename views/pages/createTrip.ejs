@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <%- include('../partials/head'); %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body class="container">
+    
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
+    
+        <main>
+            <div class="jumbotron">
+                <h1>Create a New Trip</h1>
+        
+                <form action="/processform" method="POST">
+                    <h5>New Trip to plan </h5>
+                    <div class="form-group">
+                        <input type="number" name="destination_id" id="id" class="form-control" placeholder="choose id (Enter an ID not in the trip table shown below)">
+                        <br>
+                        <input type="text" name="transportation" id="transportation" class="form-control" placeholder="Enter transportation">
+                        <br>
+                        <input type="text" name="startdate" id="start" class="form-control" placeholder="Enter start date YYYY-MM-DD format">
+                        <br>
+                        <input type="text" name="enddate" id="end" class="form-control" placeholder="Enter end date YYYY-MM-DD format">
+                        <br>
+                        <input type="text" name="tripname" id="trip" class="form-control" placeholder="Enter name of trip">
+                        <br>
+                        <input class="btn btn-lg btn-primary btn-block" type="submit">
+                    </div>
+                </form>
+                
+                <% if(locals.added) { %>
+                    <label><%= locals.added %></label>
+
+                    
+
+                <%} %>
+            </div>
+            <div class="col-sm-4">
+                <div class="well">
+                <ul>
+                    <% if (locals.trip) { %>
+                        <% locals.trip.forEach(function(place) { %>
+                        <li>
+                            
+                            <%=place.transportation %>, <%= place.startdate %>, <%=place.enddate %>, <%=place.tripname %>
+            
+                        </li>
+                        <% }); %>
+                    <% } %>
+                </ul>
+                </div>
+            </div>
+        </main>
+
+    </body>
+
+
+</html>
